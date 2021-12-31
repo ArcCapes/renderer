@@ -67,43 +67,19 @@
                 console.log(url);
                 var params = url.searchParams;
 
-                var renderParams = {};
-
-                if (params.get("skin.url")) {
-                    renderParams.url = "https://minerender.org/CORSpipe.php?url=" + encodeURIComponent(params.get("skin.url"));
-                } else if (params.get("skin.data")) {
-                    renderParams.data = params.get("skin.data");
-                } else if (params.get("skin.name")) {
-                    renderParams.username = params.get("skin.name");
-                } else if (params.get("skin")) {
-                    renderParams = params.get("skin");// any type
-                } else {
-                    console.error("Missing Skin param in url");
-                    return;
-                }
-
-                if (params.get("skin.slim")) {
-                    renderParams.slim = params.get("skin.slim") === "true";
-                }
-              
-                if (params.get("skin.cape")) {
-                    renderParams.capeUrl = params.get("skin.cape");
-                    renderParams.optifine = true;
-                }
-
                 var options = {
                     showAxes: false,
-                    autoResize: false,
+                    autoResize: true,
                     controls: {
                         enabled: true,
                         zoom: false,
                         rotate: true,
-                        pan: true
+                        pan: false
                     },
                     camera: {
                         x: 20,
                         y: 35,
-                        z: 20,
+                        z: -25,
                         target: [0, 18, 0]
                     },
                     render: {
@@ -126,9 +102,12 @@
 
                 var skinRender = new SkinRender(options);
 
-                console.log(renderParams);
                 // Render
-                skinRender.render(renderParams, function () {
+                //skinRender.render(renderParams, function () {
+                skinRender.render({
+                    username: params.get("skin"),
+                    capeUrl: params.get("skin.cape")
+                }, function () {
                     // Apply shadow after the element is added
                     $("#placeholderImage").remove();
                     if (params.get("shadow") && params.get("shadow") === "true") {
