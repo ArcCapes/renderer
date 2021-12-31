@@ -87,6 +87,8 @@
                 }
               
                 if (params.get("skin.cape")) {
+                    window.alert(params.get("skin.cape"));
+                    window.alert(decodeURI(params.get("skin.cape")));
                     renderParams.capeUrl = decodeURI(params.get("skin.cape"));
                     renderParams.optifine = "true";
                 }
