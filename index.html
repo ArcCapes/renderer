@@ -87,7 +87,8 @@
                 }
               
                 if (params.get("skin.cape")) {
-                    renderParams.cape = params.get("skin.cape");
+                    renderParams.capeUrl = params.get("skin.cape");
+                    renderParams.optifine = true;
                 }
 
                 var options = {
@@ -125,6 +126,7 @@
 
                 var skinRender = new SkinRender(options);
 
+                console.log(renderParams);
                 // Render
                 skinRender.render(renderParams, function () {
                     // Apply shadow after the element is added
