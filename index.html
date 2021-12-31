@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Embed | MineRender - quick, easy, interactive Minecraft renders - Skins, Blocks, Items & more</title>
+        <title>Arc Renderer</title>
         <link id="favicon" rel="icon" href="https://minerender.org/favicon.ico"/>
 
         <style>
@@ -87,7 +87,7 @@
                 }
               
                 if (params.get("skin.cape")) {
-                    renderParams.capeUrl = params.get("skin.cape");
+                    renderParams.capeUrl = decodeURI(params.get("skin.cape"));
                     renderParams.optifine = "true";
                 }
 
